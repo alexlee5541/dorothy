@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧧 專屬開工大吉解密 🚀</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #fff5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #b71c1c;
+        }
+
+        .secret-zone {
+            display: none;
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px dashed #d32f2f;
+        }
+
+        .payme-btn {
+            display: inline-block;
+            background: #e02424;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(224, 36, 36, 0.3);
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>🧧 專屬開工利是挑戰</h2>
+
+        <div id="quiz-section">
+            <p class="question" id="question-text">正在載入問題...</p>
+            <input type="text" id="answer-input" placeholder="請輸入答案" autocomplete="off">
+            <br>
+            <button onclick="checkAnswer()">下一題 ➡️</button>
+            <div class="error" id="error-msg"></div>
+        </div>
+
+        <!-- 答對後才會顯示的區域 -->
+        <div id="secret-section" class="secret-zone">
+            <h3>🎉 恭喜通關！</h3>
+            <p>答啱晒！密碼已解鎖。點擊下方連結領取你的開工利是：</p>
+            <!-- 記得將下方的 PayMe 連結換成你自己的 -->
+            <a href="https://payme.hsbc" class="payme-btn" target="_blank">💰 點此打開 PayMe 領取</a>
+        </div>
+    </div>
+
+    <script>
+        // 💡 在這裡修改你的問題和答案（答案建議用小寫或精簡字眼，方便對準）
+        const quizData = [
+            { q: "第一題：我哋第一次拍拖食飯係邊間餐廳？", a: "spaghetti house" },
+            { q: "第二題：我最鍾意飲咩牌子嘅咖啡？", a: "april" },
+            { q: "第三題：世界上最帥的男人叫什麼名字？", a: "沐言" }
+        ];
+
+        let currentIdx = 0;
+
+        function showQuestion() {
+            if (currentIdx < quizData.length) {
+                document.getElementById('question-text').innerText = quizData[currentIdx].q;
+                document.getElementById('answer-input').value = '';
+                document.getElementById('error-msg').innerText = '';
+            } else {
+                // 所有問題答對，顯示 PayMe Code
+                document.getElementById('quiz-section').style.display = 'none';
+                document.getElementById('secret-section').style.display = 'block';
+            }
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+            const correctAnswer = quizData[currentIdx].a.toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                currentIdx++;
+                showQuestion();
+            } else {
+                document.getElementById('error-msg').innerText = "❌ 答錯咗啦，再諗下！";
+            }
+        }
+
+        // 初始化第一題
+        showQuestion();
+    </script>
+
+</body>
+
+</html>
